@@ -221,7 +221,7 @@ const MovieDetail = () => {
             </div>
             <div className="flex w-full gap-x-2 px-4">
               <TabPanel value={tabValue} index={0}>
-                Item One
+                Videos
               </TabPanel>
               <TabPanel value={tabValue} index={1}>
                 Item Two
