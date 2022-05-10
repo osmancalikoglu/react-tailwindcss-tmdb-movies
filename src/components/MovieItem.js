@@ -23,9 +23,31 @@ const MovieItem = ({ movie }) => {
   return (
     <div
       className={
-        "relative w-56 shadow-md bg-neutral-600 text-white p-1.5 cursor-pointer hover:scale-105 transition opacity-80 hover:opacity-100 group"
+        "relative w-56 shadow-md hover:z-20 bg-neutral-600 text-white p-1.5 cursor-pointer hover:scale-105 transition opacity-90 hover:opacity-100 group"
       }
     >
+      <div className="absolute -top-2 -left-2 h-12 w-12 rounded-full bg-black flex items-center justify-center text-gray-700">
+        <CircularProgress
+          className="absolute z-0"
+          variant="determinate"
+          value={100}
+          size={42}
+          color="inherit"
+        />
+        <CircularProgress
+          className="absolute z-10 opacity-60 group-hover:opacity-100"
+          variant="determinate"
+          value={rating}
+          color={`${
+            rating < 50 ? "error" : rating < 70 ? "warning" : "success"
+          }`}
+          size={42}
+        />
+        <span className="text-sm font-semibold text-white opacity-90 group-hover:opacity-100">
+          {rating}
+          <span className="text-[0.7rem]">%</span>
+        </span>
+      </div>
       <div className="absolute top-3 right-3 w-6 h-6 rounded-full flex items-center justify-center bg-gray-100">
         <IconButton
           id="customized-button"
@@ -80,28 +102,7 @@ const MovieItem = ({ movie }) => {
             Your rating
           </MenuItem>
         </Menu>
-      </div>
-      <div className="absolute -top-2 -left-2 h-12 w-12 rounded-full bg-black flex items-center justify-center text-gray-700">
-        <CircularProgress
-          className="absolute z-0"
-          variant="determinate"
-          value={100}
-          size={42}
-          color="inherit"
-        />
-        <CircularProgress
-          className="absolute z-10"
-          variant="determinate"
-          value={rating}
-          color={`${
-            rating < 50 ? "error" : rating < 70 ? "warning" : "success"
-          }`}
-          size={42}
-        />
-        <span className="text-sm font-semibold text-white">
-          {rating}
-          <span className="text-[0.7rem]">%</span>
-        </span>
+      
       </div>
       <Link to={`/movie/${movie.id}`}>
         <img
