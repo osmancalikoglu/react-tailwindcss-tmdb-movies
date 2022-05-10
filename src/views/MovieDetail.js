@@ -108,7 +108,11 @@ const MovieDetail = () => {
       })
       .catch((err) => alert(err));
     getVideos(id)
-      .then((res) => setVideos(res?.results?.map((v) => (v.site === "YouTube" && v)).slice(0, 5)))
+      .then((res) =>
+        setVideos(
+          res?.results?.map((v) => v.site === "YouTube" && v).slice(0, 5)
+        )
+      )
       .catch((err) => alert(err));
   }, []);
 
@@ -169,7 +173,9 @@ const MovieDetail = () => {
                   </span>
                 </h2>
                 <div className="flex items-center justify-start ">
-                  <span className="text-sm shrink-0">{movie?.release_date}</span>
+                  <span className="text-sm shrink-0">
+                    {movie?.release_datecre}
+                  </span>
                   <CircleIcon sx={{ fontSize: "8px" }} className="mx-2" />
                   <div className="text-sm flex flex-wrap gap-y-1">
                     {movie?.genres.map((genre, i) => (
@@ -182,7 +188,9 @@ const MovieDetail = () => {
                     ))}
                   </div>
                   <CircleIcon sx={{ fontSize: "8px" }} className="mx-2" />
-                  <span className="text-sm shrink-0">{timeConvert(movie?.runtime)}</span>
+                  <span className="text-sm shrink-0">
+                    {timeConvert(movie?.runtime)}
+                  </span>
                 </div>
               </div>
               <div className="absolute mt-4 h-20 w-20 rounded-full bg-black flex items-center justify-center text-gray-700 cursor-pointer">
@@ -245,7 +253,11 @@ const MovieDetail = () => {
                   >
                     <img
                       className="w-full max-h-28 md:max-h-52 object-cover origin-top rounded-t-xl"
-                      src={castItem.profile_path ? `https://www.themoviedb.org/t/p/w500${castItem.profile_path}` : "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"}
+                      src={
+                        castItem.profile_path
+                          ? `https://www.themoviedb.org/t/p/w500${castItem.profile_path}`
+                          : "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+                      }
                       alt="profile"
                     />
                     <div className="w-full p-2 overflow-hidden">
@@ -270,78 +282,82 @@ const MovieDetail = () => {
                   <Tab className="!text-xs !p-1" label="Posters" id="tab-2" />
                 </Tabs>
               </div>
-                <TabPanel value={tabValue} index={0}>
-                  <div className="flex w-full gap-x-2 px-4 overflow-x-auto">
-                    {videos?.map((video) => (
-                      <>
-                        <img
-                          className="w-full max-h-24 md:max-h-52 object-cover rounded-xl cursor-pointer hover:opacity-80 transition"
-                          src="https://martialartspasadenantc.com/wp-content/uploads/sites/185/2015/12/video-placeholder.png"
-                          alt="video"
-                          onClick={openModal}
-                        />
-                        <Modal open={modalOpen} onClose={closeModal}>
-                          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white w-3/4 h-3/4">
-                            <ReactPlayer url={`https://www.youtube.com/watch?v=${video.key}`} width='100%' height='100%' />
-                          </div>
-                        </Modal>
-                      </>
-                    ))}
-                  </div>
-                </TabPanel>
-                <TabPanel value={tabValue} index={1}>
-                  <div className="flex w-full gap-x-2 px-4 overflow-x-auto">
-                    {backdrops?.map((backdrop) => (
-                      <a
-                        href={`https://www.themoviedb.org/t/p/w500${backdrop.file_path}`}
-                        target="_blank"
-                        className="hover:opacity-80 transition h-auto w-full min-w-[7rem] border border-gray-300 rounded-xl shadow"
-                      >
-                        <img
-                          className="w-full max-h-52 md:max-h-72 object-cover origin-top rounded-xl"
-                          src={`https://www.themoviedb.org/t/p/w500${backdrop.file_path}`}
-                          alt="backdrop"
-                        />
-                      </a>
-                    ))}
-                  </div>
-                </TabPanel>
-                <TabPanel value={tabValue} index={2}>
-                  <div className="flex w-full gap-x-2 px-4 overflow-x-auto">
-                    {posters?.map((poster) => (
-                      <a
-                        href={`https://www.themoviedb.org/t/p/w500${poster.file_path}`}
-                        target="_blank"
-                        className="hover:opacity-80 transition h-auto w-full min-w-[7rem] border border-gray-300 rounded-xl shadow"
-                      >
-                        <img
-                          className="w-full max-h-52 md:max-h-72 object-cover origin-top rounded-xl"
-                          src={`https://www.themoviedb.org/t/p/w500${poster.file_path}`}
-                          alt="poster"
-                        />
-                      </a>
-                    ))}
-                  </div>
-                </TabPanel>
-                <div className="w-full flex items-center justify-end">
-                  <Link
-                    className="font-semibold text-sm text-blue-500 hover:bg-blue-100 p-2"
-                    to={`/media/${
-                      tabValue === 0
-                        ? "video"
-                        : tabValue === 1
-                        ? "backdrop"
-                        : "poster"
-                    }/${movie?.id}`}
-                  >
-                    See all{" "}
-                    {tabValue === 0
-                      ? "videos"
-                      : tabValue === 1
-                      ? "backdrops"
-                      : "posters"}
-                  </Link>
+              <TabPanel value={tabValue} index={0}>
+                <div className="flex w-full gap-x-2 px-4 overflow-x-auto">
+                  {videos?.map((video) => (
+                    <>
+                      <img
+                        className="w-full max-h-24 md:max-h-52 object-cover rounded-xl cursor-pointer hover:opacity-80 transition"
+                        src="https://martialartspasadenantc.com/wp-content/uploads/sites/185/2015/12/video-placeholder.png"
+                        alt="video"
+                        onClick={openModal}
+                      />
+                      <Modal open={modalOpen} onClose={closeModal}>
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white w-3/4 h-3/4">
+                          <ReactPlayer
+                            url={`https://www.youtube.com/watch?v=${video.key}`}
+                            width="100%"
+                            height="100%"
+                          />
+                        </div>
+                      </Modal>
+                    </>
+                  ))}
                 </div>
+              </TabPanel>
+              <TabPanel value={tabValue} index={1}>
+                <div className="flex w-full gap-x-2 px-4 overflow-x-auto">
+                  {backdrops?.map((backdrop) => (
+                    <a
+                      href={`https://www.themoviedb.org/t/p/w500${backdrop.file_path}`}
+                      target="_blank"
+                      className="hover:opacity-80 transition h-auto w-full min-w-[7rem] border border-gray-300 rounded-xl shadow"
+                    >
+                      <img
+                        className="w-full max-h-52 md:max-h-72 object-cover origin-top rounded-xl"
+                        src={`https://www.themoviedb.org/t/p/w500${backdrop.file_path}`}
+                        alt="backdrop"
+                      />
+                    </a>
+                  ))}
+                </div>
+              </TabPanel>
+              <TabPanel value={tabValue} index={2}>
+                <div className="flex w-full gap-x-2 px-4 overflow-x-auto">
+                  {posters?.map((poster) => (
+                    <a
+                      href={`https://www.themoviedb.org/t/p/w500${poster.file_path}`}
+                      target="_blank"
+                      className="hover:opacity-80 transition h-auto w-full min-w-[7rem] border border-gray-300 rounded-xl shadow"
+                    >
+                      <img
+                        className="w-full max-h-52 md:max-h-72 object-cover origin-top rounded-xl"
+                        src={`https://www.themoviedb.org/t/p/w500${poster.file_path}`}
+                        alt="poster"
+                      />
+                    </a>
+                  ))}
+                </div>
+              </TabPanel>
+              <div className="w-full flex items-center justify-end">
+                <Link
+                  className="font-semibold text-sm text-blue-500 hover:bg-blue-100 p-2"
+                  to={`/media/${
+                    tabValue === 0
+                      ? "video"
+                      : tabValue === 1
+                      ? "backdrop"
+                      : "poster"
+                  }/${movie?.id}`}
+                >
+                  See all{" "}
+                  {tabValue === 0
+                    ? "videos"
+                    : tabValue === 1
+                    ? "backdrops"
+                    : "posters"}
+                </Link>
+              </div>
             </div>
           </div>
         </div>
