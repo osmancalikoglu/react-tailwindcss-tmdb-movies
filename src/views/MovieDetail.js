@@ -152,7 +152,7 @@ const MovieDetail = () => {
       <div className="max-h-screen">
         <div className="flex w-full group pb-10 overflow-hidden bg-zinc-700">
           <img
-            className="h-auto max-h-screen min-h-max xl:max-h-[48rem] absolute 2xl:right-1/2 2xl:translate-x-1/2 md:right-0 xl:right-0 blur-sm opacity-30 transition group-hover:opacity-70 group-hover:blur-0"
+            className="h-auto min-h-max xl:max-h-[48rem] absolute 2xl:right-1/2 2xl:translate-x-1/2 md:right-0 xl:right-0 blur-sm opacity-30 transition group-hover:opacity-70 group-hover:blur-0"
             src={`https://www.themoviedb.org/t/p/original${movie?.backdrop_path}`}
             alt="cover"
           />
