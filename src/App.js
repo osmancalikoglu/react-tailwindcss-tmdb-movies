@@ -14,12 +14,14 @@ function App() {
   return (
     <Router>
       <main className="min-h-screen pb-3 bg-zinc-700">
-        <div className="max-w-7xl flex justify-between items-center mx-auto bg-zinc-800 text-white font-extrabold text-3xl p-6 mb-4 rounded-2xl shadow-lg">
-          <NavLink to="/">wMovies</NavLink>
-          <input
-            placeholder="Search..."
-            className="p-2 text-base rounded-md focus:ring-2 outline-none ring-zinc-400 focus:ring-offset-1 ring-offset-zinc-800 transition text-zinc-800"
-          />
+        <div className="w-full bg-zinc-800 text-white font-extrabold text-3xl p-6 mb-4 shadow-lg">
+          <div className="max-w-6xl flex flex-col md:flex-row gap-y-2 justify-between items-center mx-auto">
+            <NavLink to="/">wMovies</NavLink>
+            <input
+              placeholder="Search..."
+              className="p-2 text-base rounded-md focus:ring-2 outline-none ring-zinc-400 focus:ring-offset-1 ring-offset-zinc-800 transition text-zinc-800"
+            />
+          </div>
         </div>
         <Routes>
           <Route exact path="/" element={<Home />} />
