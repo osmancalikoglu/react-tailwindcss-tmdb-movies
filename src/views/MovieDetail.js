@@ -174,7 +174,7 @@ const MovieDetail = () => {
                 </h2>
                 <div className="flex items-center justify-start ">
                   <span className="text-sm shrink-0">
-                    {movie?.release_datecre}
+                    {movie?.release_date}
                   </span>
                   <CircleIcon sx={{ fontSize: "8px" }} className="mx-2" />
                   <div className="text-sm flex flex-wrap gap-y-1">
